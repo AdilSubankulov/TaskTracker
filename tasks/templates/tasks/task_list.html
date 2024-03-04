@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task List</title>
+</head>
+<body>
+    <h3>Трекер задач</h3>
+    <ul>
+    {% for task in tasks %}
+        <li>{{ task.Задача }} - <span style="color: {% if task.Приоритет == 'Низкий' %} green {% elif task.Приоритет == 'Средний' %} orange {% else %} red {% endif %}">{{ task.Приоритет }}</span> - <span style="color: {% if task.Статус == 'Выполнено' %} green {% elif task.Статус == 'Отменено' %} red {% else %} purple {% endif %}">{{ task.Статус }}</span> - <a href="{% url 'edit_task' task.pk %}">Редактировать</a> - <a href="{% url 'delete_task' task.pk %}">Удалить</a></li>
+    {% endfor %}
+    </ul>
+    <a href="{% url 'create_task' %}">Создать задачу</a>
+</body>
+</html>
